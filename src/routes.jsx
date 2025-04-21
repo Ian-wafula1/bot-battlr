@@ -2,7 +2,6 @@ import App from "./App"
 import Collection from "./pages/Collection"
 import Enlisted from "./pages/Enlisted"
 import ErrorPage from "./pages/ErrorPage"
-import BotPage from './pages/BotPage'
 
 const routes = [
     {
@@ -17,10 +16,6 @@ const routes = [
             {
                 path: '/enlisted',
                 element: <Enlisted />
-            },
-            {
-                path: '/bots/:id',
-                element: <BotPage />
             }
         ]
     }
