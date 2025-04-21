@@ -3,11 +3,11 @@ import './App.css';
 import NavBar from './components/NavBar';
 
 function App() {
+	
 	return (
 		<>
 			<NavBar />
 			{useLocation().pathname === '/'? <Navigate to='/collection' />: null }
-			
 			<Outlet />
 		</>
 	);

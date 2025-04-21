@@ -1,18 +1,12 @@
-import useFetch from '../utils/useFetch';
+import { useLocation } from 'react-router-dom';
 
-export default function BotCard({ id, location }) {
-	const { data: bot, loading, error } = useFetch(`https://localhost:8001/${location}/${id}`);
+export default function BotCard({ bot }) {
+    console.log('reached')
 	const { name, avatar_url: avatar, bot_class: botClass, health, damage, armor, catchphrase } = bot;
-	if (loading) {
-		return <div>Loading bot...</div>;
-	}
-	if (error) {
-		return <div>Error: {error}</div>;
-	}
+    const location = useLocation()
 	return (
 		<div className="card">
 			<div className="back-button"></div>
-			<div className="close-button"></div>
 			<h1 className="name">{name}</h1>
 			<img src={avatar} alt="Bot avatar" />
 			<div className="stats">
@@ -22,7 +16,7 @@ export default function BotCard({ id, location }) {
 				<p>Class: {botClass}</p>
 			</div>
 			<p>Catchphrase: {catchphrase}</p>
-			<button>{location === 'collection' ? 'Add' : 'Remove'}</button>
+			<button>{location.pathname === '/collection' ? 'Enlist' : 'Remove'} Bot</button>
 		</div>
 	);
 }

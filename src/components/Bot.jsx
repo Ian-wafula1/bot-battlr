@@ -1,7 +1,8 @@
-export default function Bot({index, bot}) {
+export default function Bot({index, bot, setSidebarBot}) {
     const {name, avatar_url: avatar, bot_class: botClass, health, damage, armor} = bot
+
     return (
-        <div>
+        <div onClick={() => setSidebarBot(bot)}>
             <p>{index}</p>
             <img src={avatar} alt="Bot avatar" />
             <p>{name}</p>
