@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);      
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false)
+  const [update, forceUpdate] = useReducer(x => x + 1, 0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,9 +21,9 @@ const useFetch = (url) => {
     };
 
     fetchData();
-  }, [url]);
+  }, [url, update]);
 
-  return { data, loading, error };
+  return { data, loading, error, forceUpdate };
 };
 
 export default useFetch;

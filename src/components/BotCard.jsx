@@ -1,9 +1,20 @@
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
-export default function BotCard({ bot }) {
-    console.log('reached')
+export default function BotCard({ bot, updateFunc }) {
 	const { name, avatar_url: avatar, bot_class: botClass, health, damage, armor, catchphrase } = bot;
-    const location = useLocation()
+	const location = useLocation();
+	const endpoint = location.pathname === '/collection' ? 'bots' : 'enlisted';
+	function enlistBot() {
+		try {
+			axios.delete(`http://localhost:8001/${endpoint}/${bot.id}`);
+			axios.post(`http://localhost:8001/${endpoint == 'bots' ? 'enlisted' : 'bots'}`, bot);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			updateFunc();
+		}
+	}
 	return (
 		<div className="card">
 			<div className="back-button"></div>
@@ -16,7 +27,7 @@ export default function BotCard({ bot }) {
 				<p>Class: {botClass}</p>
 			</div>
 			<p>Catchphrase: {catchphrase}</p>
-			<button>{location.pathname === '/collection' ? 'Enlist' : 'Remove'} Bot</button>
+			<button onClick={enlistBot}>{location.pathname === '/collection' ? 'Enlist' : 'Remove'} Bot</button>
 		</div>
 	);
 }
