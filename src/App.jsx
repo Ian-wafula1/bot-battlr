@@ -7,6 +7,7 @@ function App() {
 		<>
 			<NavBar />
 			{useLocation().pathname === '/'? <Navigate to='/collection' />: null }
+			
 			<Outlet />
 		</>
 	);
