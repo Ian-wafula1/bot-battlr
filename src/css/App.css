@@ -1,0 +1,204 @@
+@import url('./Loader.css');
+
+#root {
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	display: flex;
+	justify-content: space-evenly;
+	font-size: 2.2rem;
+	padding: 1rem 5rem;
+}
+
+header a {
+	color: #f0f0f0;
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+
+header a::before,
+header a::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	left: 0;
+}
+
+header a::after {
+	content: attr(data-replace);
+}
+
+header a::after {
+	content: attr(data-replace);
+	height: 100%;
+	top: 0;
+	transform-origin: 100% 50%;
+	transform: translate3d(200%, 0, 0);
+	transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+	color: #54b3d6;
+}
+
+header a:hover::after,
+header a:focus::after,
+header a.active::after {
+	transform: translate3d(0, 0, 0);
+}
+
+header a::before {
+	background-color: #54b3d6;
+	height: 2px;
+	bottom: 0;
+	transform-origin: 100% 50%;
+	transform: scaleX(0);
+	transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+header a:hover::before,
+header a:focus::before,
+header a.active::before {
+	transform-origin: 0% 50%;
+	transform: scaleX(1);
+}
+
+header a span {
+	display: inline-block;
+	transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+header a:hover span, header a.active span {
+	transform: translate3d(-200%, 0, 0);
+}
+/* 
+header a.active {
+    color: green;
+} */
+
+main > h1 {
+	text-align: center;
+	padding: 2rem 5rem 3rem;
+	font-size: 4rem;
+	/* margin-bottom: 1rem; */
+}
+
+header,
+main > h1 {
+	/* font-size: 2.6rem; */
+	background-color: #010621;
+	color: #f0f0f0;
+}
+
+.utilities {
+	display: flex;
+	gap: 2rem;
+	margin: 1rem 2rem;
+}
+
+.bots-container {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: stretch;
+}
+
+.bots {
+	width: 100%;
+}
+
+.bot {
+	display: flex;
+	height: 7rem;
+	align-items: center;
+	border: 2px solid red;
+	max-width: 100%;
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 1rem;
+}
+
+.bot > img {
+	width: 4.5rem;
+	height: 4.5rem;
+	margin: 0 1rem;
+}
+
+.bot > div:last-child {
+	display: flex;
+	gap: 1rem;
+	margin-left: auto;
+}
+
+.bot .damage,
+.bot .health,
+.bot .armor {
+	background-size: 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 2rem;
+	height: 2rem;
+	display: inline-block;
+	position: relative;
+	top: 0.3rem;
+}
+
+.bot .damage {
+	background-image: url('../assets/damage.svg');
+}
+
+.bot .health {
+	background-image: url('../assets/health.svg');
+}
+
+.bot .armor {
+	background-image: url('../assets/armour.svg');
+}
+
+
+aside {
+    width: 60rem;
+    border: 2px solid red;
+    position: sticky;
+    top: 4rem;
+    height: 55rem;
+    margin: 1rem 0 1rem 1rem;
+    padding: 2rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+aside .back-button {
+    background-color: white;
+    border-radius: 50%;
+    background-size: 55%;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 3.8rem;
+	height: 3.8rem;
+	display: inline-block;
+	position: absolute;
+    top: 1.7rem;
+    left: -1.8rem;
+    background-image: url('../assets/back.svg');
+}
+
+aside .delete {
+    background-image: url('../assets/delete.svg');
+    position: absolute;
+    background-size: 85%;
+	background-repeat: no-repeat;
+	background-position: center;
+    width: 3.8rem;
+	height: 3.8rem;
+    right: 2rem;
+}
+
+aside .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem .2rem;
+    margin: 2rem;
+}

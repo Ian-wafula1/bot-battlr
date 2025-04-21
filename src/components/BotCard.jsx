@@ -16,8 +16,9 @@ export default function BotCard({ bot, updateFunc }) {
 		}
 	}
 	return (
-		<div className="card">
+		<>
 			<div className="back-button"></div>
+			<div className="delete"></div>
 			<h1 className="name">{name}</h1>
 			<img src={avatar} alt="Bot avatar" />
 			<div className="stats">
@@ -28,6 +29,6 @@ export default function BotCard({ bot, updateFunc }) {
 			</div>
 			<p>Catchphrase: {catchphrase}</p>
 			<button onClick={enlistBot}>{location.pathname === '/collection' ? 'Enlist' : 'Remove'} Bot</button>
-		</div>
+		</>
 	);
 }

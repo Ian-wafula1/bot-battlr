@@ -16,7 +16,8 @@ const useFetch = (url) => {
         console.error("Fetch error:", error);
         setError(error)
       } finally {
-        setLoading(false)
+        // setLoading(false)
+        setTimeout(() => setLoading(false), 500)
       }
     };
 

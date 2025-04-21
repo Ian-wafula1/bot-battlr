@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom"
 export default function NavBar() {
     return (
         <header>
-            <NavLink className='nav-link' to='/collection'>Bot Collection</NavLink>
-            <NavLink className='nav-link' to='/enlisted'>Enlisted Bots</NavLink>
+            <NavLink data-replace='Bot Collection' className='nav-link' to='/collection'><span>Bot Collection</span></NavLink>
+            <NavLink data-replace='Enlisted Bots' className='nav-link' to='/enlisted'><span>Enlisted Bots</span></NavLink>
         </header>
     )
 }

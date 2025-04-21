@@ -4,6 +4,7 @@ import Filter from '../components/Filter';
 import { useState } from 'react';
 import sortFilterFunc from '../utils/sortFilterFunc';
 import BotCard from '../components/BotCard';
+import Loader from '../components/Loader';
 
 export default function Collection() {
 	const { data: bots, loading, error, forceUpdate } = useFetch('http://localhost:8001/bots');
@@ -12,7 +13,7 @@ export default function Collection() {
 	const [sidebarBot, setSidebarBot] = useState(null);
 
 	if (loading) {
-		return <div className="loading">Loading...</div>;
+		return <Loader />
 	}
 	if (error) {
 		return <div className="error">Fetch error!</div>;
@@ -28,12 +29,14 @@ export default function Collection() {
 				<SortBar sortValue={sortValue} setSortValue={setSortValue} />
 				<Filter filterValue={filterValue} setFilterValue={setFilterValue} />
 			</div>
-			<div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBot)}</div>
-			{!sidebarBot ? null : (
-				<aside>
-					<BotCard bot={sidebarBot} updateFunc={updateFunc} />
-				</aside>
-			)}
+			<div className="bots-container">
+                <div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBot)}</div>
+                {!sidebarBot ? null : (
+                    <aside>
+                        <BotCard bot={sidebarBot} updateFunc={updateFunc} />
+                    </aside>
+                )}
+            </div>
 		</main>
 	);
 }
