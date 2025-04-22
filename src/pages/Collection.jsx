@@ -46,13 +46,6 @@ export default function Collection() {
 			</div>
 			<div className="bots-container">
 				<div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBotFunc)}</div>
-				{/* {!sidebarBot ? (
-					<aside></aside>
-				) : (
-					<aside style={{ width: width }}>
-						
-					</aside>
-				)} */}
 				<aside style={(width=== '0')?{width: width}: null}>
 					{!sidebarBot ? null :<BotCard bot={sidebarBot} updateFunc={updateFunc} closeFunc={closeFunc} deleteFunc={deleteFunc} /> }
 				</aside>

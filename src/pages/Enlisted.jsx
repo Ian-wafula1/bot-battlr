@@ -5,12 +5,14 @@ import { useState } from 'react';
 import sortFilterFunc from '../utils/sortFilterFunc';
 import BotCard from '../components/BotCard';
 import Loader from '../components/Loader';
+import axios from 'axios';
 
 export default function Enlisted() {
 	const { data: bots, loading, error, forceUpdate } = useFetch('http://localhost:8001/enlisted');
 	const [sortValue, setSortValue] = useState('name');
 	const [filterValue, setFilterValue] = useState('All');
 	const [sidebarBot, setSidebarBot] = useState(null);
+	const [width, setWidth] = useState('45rem');
 
 	if (loading) {
 		return <Loader />;
@@ -22,6 +24,19 @@ export default function Enlisted() {
 		setSidebarBot(null);
 		forceUpdate();
 	}
+	function closeFunc() {
+		setSidebarBot(null);
+		setWidth('0');
+	}
+	function setSidebarBotFunc() {
+		setSidebarBot(this);
+		setWidth('45rem');
+	}
+	function deleteFunc(id) {
+		axios.delete(`http://localhost:8001/bots/${id}`);
+		forceUpdate();
+		setSidebarBot(null);
+	}
 	return (
 		<main>
 			<h1>Enlisted</h1>
@@ -30,8 +45,8 @@ export default function Enlisted() {
 				<Filter filterValue={filterValue} setFilterValue={setFilterValue} />
 			</div>
 			<div className="bots-container">
-				<div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBot)}</div>
-				{!sidebarBot ? <aside></aside> : <BotCard bot={sidebarBot} updateFunc={updateFunc} />}
+				<div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBotFunc)}</div>
+				<aside style={width === '0' ? { width: width } : null}>{!sidebarBot ? null : <BotCard bot={sidebarBot} updateFunc={updateFunc} closeFunc={closeFunc} deleteFunc={deleteFunc} />}</aside>
 			</div>
 		</main>
 	);
