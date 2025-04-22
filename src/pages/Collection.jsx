@@ -31,8 +31,8 @@ export default function Collection() {
 			</div>
 			<div className="bots-container">
                 <div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBot)}</div>
-                {!sidebarBot ? null : (
-                    <aside>
+                {!sidebarBot ? <aside></aside> : (
+                    <aside >
                         <BotCard bot={sidebarBot} updateFunc={updateFunc} />
                     </aside>
                 )}

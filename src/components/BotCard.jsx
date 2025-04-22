@@ -27,7 +27,7 @@ export default function BotCard({ bot, updateFunc }) {
 				<p>Armour: {armor}</p>
 				<p>Class: {botClass}</p>
 			</div>
-			<p>Catchphrase: {catchphrase}</p>
+			<p>Catchphrase: <span>{catchphrase}</span></p>
 			<button onClick={enlistBot}>{location.pathname === '/collection' ? 'Enlist' : 'Remove'} Bot</button>
 		</>
 	);
