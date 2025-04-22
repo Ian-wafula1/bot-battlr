@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
-export default function BotCard({ bot, updateFunc }) {
-	const { name, avatar_url: avatar, bot_class: botClass, health, damage, armor, catchphrase } = bot;
+export default function BotCard({ bot, updateFunc, closeFunc, deleteFunc }) {
+	const { name, avatar_url: avatar, bot_class: botClass, health, damage, armor, catchphrase,id } = bot;
 	const location = useLocation();
 	const endpoint = location.pathname === '/collection' ? 'bots' : 'enlisted';
 	function enlistBot() {
@@ -15,10 +15,11 @@ export default function BotCard({ bot, updateFunc }) {
 			updateFunc();
 		}
 	}
+
 	return (
 		<>
-			<div className="back-button"></div>
-			<div className="delete"></div>
+			<div className="back-button" onClick={() => closeFunc(id)}></div>
+			<div className="delete" onClick={() => deleteFunc(id)}></div>
 			<h1 className="name">{name}</h1>
 			<img src={avatar} alt="Bot avatar" />
 			<div className="stats">

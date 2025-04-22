@@ -232,6 +232,7 @@ select::-ms-expand {
 aside {
 	width: 0;
 	height: 60rem;
+	/* overflow: hidden; */
 	/* transition: width 1s; */
 }
 

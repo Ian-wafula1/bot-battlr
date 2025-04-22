@@ -13,7 +13,7 @@ export default function Enlisted() {
 	const [sidebarBot, setSidebarBot] = useState(null);
 
 	if (loading) {
-		return <Loader />
+		return <Loader />;
 	}
 	if (error) {
 		return <div className="error">Fetch error!</div>;
@@ -30,13 +30,9 @@ export default function Enlisted() {
 				<Filter filterValue={filterValue} setFilterValue={setFilterValue} />
 			</div>
 			<div className="bots-container">
-                <div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBot)}</div>
-                {!sidebarBot ? <aside></aside> : (
-                    <aside >
-                        <BotCard bot={sidebarBot} updateFunc={updateFunc} />
-                    </aside>
-                )}
-            </div>
+				<div className="bots">{sortFilterFunc(bots, sortValue, filterValue, setSidebarBot)}</div>
+				{!sidebarBot ? <aside></aside> : <BotCard bot={sidebarBot} updateFunc={updateFunc} />}
+			</div>
 		</main>
 	);
 }
