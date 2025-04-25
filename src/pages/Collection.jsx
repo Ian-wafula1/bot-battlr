@@ -6,9 +6,10 @@ import sortFilterFunc from '../utils/sortFilterFunc';
 import BotCard from '../components/BotCard';
 import Loader from '../components/Loader';
 import axios from 'axios';
+import { API_URL } from '../constants/utility';
 
 export default function Collection() {
-	const { data: bots, loading, error, forceUpdate } = useFetch('http://localhost:8001/bots');
+	const { data: bots, loading, error, forceUpdate } = useFetch(`${API_URL}/api/bots`);
 	const [sortValue, setSortValue] = useState('name');
 	const [filterValue, setFilterValue] = useState('All');
 	const [sidebarBot, setSidebarBot] = useState(null);
@@ -33,7 +34,7 @@ export default function Collection() {
 		setWidth('45rem');
 	}
 	function deleteFunc(id) {
-		axios.delete(`http://localhost:8001/bots/${id}`);
+		axios.delete(`${API_URL}/api/bots/${id}`);
 		forceUpdate();
 		setSidebarBot(null);
 	}
